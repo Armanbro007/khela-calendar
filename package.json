@@ -1,0 +1,13 @@
+{
+  "name": "khela-calendar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "World Cup 2026 calendar subscription site for Bangladesh football fans.",
+  "scripts": {
+    "start": "vercel dev",
+    "deploy": "vercel"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

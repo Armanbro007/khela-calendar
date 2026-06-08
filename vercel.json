@@ -1,0 +1,13 @@
+{
+  "headers": [
+    {
+      "source": "/api/calendar",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/calendar; charset=utf-8"
+        }
+      ]
+    }
+  ]
+}

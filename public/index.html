@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Khela Calendar - World Cup 2026 match calendar for Bangladesh</title>
+    <meta
+      name="description"
+      content="Add World Cup 2026 matches to your calendar in Bangladesh time. Bangla and English team names, flags, Google Calendar, Apple Calendar, Android and Outlook support."
+    />
+    <meta property="og:title" content="Khela Calendar" />
+    <meta property="og:description" content="World Cup 2026 calendar for Bangladesh football fans." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#07110d" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Khela Calendar home">
+        <span class="brand-mark">⚽</span>
+        <span>
+          <strong>Khela Calendar</strong>
+          <small>Bangladesh match clock</small>
+        </span>
+      </a>
+      <nav class="top-actions" aria-label="Quick actions">
+        <button class="icon-button" id="share-site" type="button" title="Share">↗</button>
+        <a class="icon-button" href="#calendar" title="Calendar">＋</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="tool-hero" id="calendar">
+        <div class="hero-copy">
+          <p class="eyebrow">🇧🇩 Asia/Dhaka by default</p>
+          <h1>World Cup 2026 match calendar for Bangladesh fans.</h1>
+          <p class="hero-text">
+            Bangla or English team names, country flags, and subscribed calendar links that stay useful when knockout fixtures are updated.
+          </p>
+          <div class="hero-stats" aria-label="Tournament stats">
+            <span><strong>104</strong> matches</span>
+            <span><strong>48</strong> teams</span>
+            <span><strong>16</strong> venues</span>
+          </div>
+        </div>
+
+        <section class="builder" aria-label="Calendar builder">
+          <div class="builder-row">
+            <div>
+              <span class="label">Language</span>
+              <div class="segmented" role="group" aria-label="Language">
+                <button class="segment active" data-lang="en" type="button">English</button>
+                <button class="segment" data-lang="bn" type="button">বাংলা</button>
+              </div>
+            </div>
+            <div>
+              <span class="label">Calendar</span>
+              <div class="segmented" role="group" aria-label="Calendar mode">
+                <button class="segment active" data-mode="all" type="button">All</button>
+                <button class="segment" data-mode="teams" type="button">Teams</button>
+              </div>
+            </div>
+          </div>
+
+          <label class="search-wrap">
+            <span class="label">Pick teams</span>
+            <input id="team-search" type="search" placeholder="Search Brazil, Argentina, ইংল্যান্ড..." autocomplete="off" />
+          </label>
+
+          <div class="team-grid" id="team-grid" aria-label="Teams"></div>
+
+          <label class="toggle-row">
+            <input id="include-knockouts" type="checkbox" checked />
+            <span>
+              <strong>Include knockout stage</strong>
+              <small>Useful when you follow selected teams.</small>
+            </span>
+          </label>
+
+          <div class="selected-strip" id="selected-strip">All 104 matches selected</div>
+
+          <div class="calendar-actions">
+            <button class="primary-action" id="apple-btn" type="button"> Apple</button>
+            <button class="primary-action" id="google-btn" type="button">G Google</button>
+            <button class="secondary-action" id="copy-btn" type="button">Copy URL</button>
+            <a class="secondary-action" id="ics-link" href="/api/calendar?scope=all&lang=en" download>Download .ics</a>
+          </div>
+          <p class="microcopy" id="feed-url">Feed ready.</p>
+        </section>
+      </section>
+
+      <section class="match-band">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">BD time</p>
+            <h2>Next matches</h2>
+          </div>
+          <div class="filter-pills" role="group" aria-label="Match filters">
+            <button class="pill active" data-filter="next" type="button">Next</button>
+            <button class="pill" data-filter="night" type="button">Night watch</button>
+            <button class="pill" data-filter="all" type="button">All</button>
+          </div>
+        </div>
+        <div class="match-list" id="match-list"></div>
+      </section>
+
+      <section class="info-grid">
+        <article>
+          <span>🇧🇩</span>
+          <h3>Bangladesh first</h3>
+          <p>Every match is displayed in Bangladesh time and can be shown with Bangla country names.</p>
+        </article>
+        <article>
+          <span>🔁</span>
+          <h3>Subscribed feeds</h3>
+          <p>Calendar apps can refresh the feed, so knockout placeholders can be updated later.</p>
+        </article>
+        <article>
+          <span>📣</span>
+          <h3>Share ready</h3>
+          <p>Built for Facebook, Messenger, and WhatsApp sharing when you are ready to launch.</p>
+        </article>
+      </section>
+
+      <section class="source-note">
+        <h2>Fan-made, free, and independent.</h2>
+        <p>
+          Khela Calendar is an unofficial fan tool. Fixture data is stored locally in this project and should be checked against official announcements before public launch.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Khela Calendar</span>
+      <span id="creator-link">Creator social link coming soon</span>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
