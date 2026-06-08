@@ -80,11 +80,6 @@ function teamLabel(name) {
   return `${team.flag} ${team.name}`;
 }
 
-function teamSubLabel(name) {
-  const team = teamInfo(name);
-  return state.lang === "bn" ? team.name : team.bn;
-}
-
 function baseUrl() {
   if (window.location.protocol === "http:" || window.location.protocol === "https:") {
     return window.location.origin;
@@ -132,7 +127,6 @@ function renderTeams() {
           <span class="flag">${team.flag}</span>
           <span>
             <strong>${state.lang === "bn" ? team.bn : team.name}</strong>
-            <small>${state.lang === "bn" ? team.name : team.bn}</small>
           </span>
         </button>
       `;
@@ -216,7 +210,6 @@ function renderMatches() {
           </div>
           <div class="match-main">
             <h3>${teamLabel(match.team_a)} <span>vs</span> ${teamLabel(match.team_b)}</h3>
-            <p>${teamSubLabel(match.team_a)} vs ${teamSubLabel(match.team_b)}</p>
           </div>
           <div class="match-meta">
             <span>${match.group}</span>

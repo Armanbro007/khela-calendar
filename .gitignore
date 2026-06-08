@@ -1,0 +1,7 @@
+node_modules/
+.vercel/
+outputs/
+work/
+.env
+.env.local
+*.log

@@ -11,13 +11,18 @@
     <meta property="og:title" content="Khela Calendar" />
     <meta property="og:description" content="World Cup 2026 calendar for Bangladesh football fans." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://khela-calendar.vercel.app/assets/khela-calendar-logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://khela-calendar.vercel.app/assets/khela-calendar-logo.png" />
     <meta name="theme-color" content="#07110d" />
+    <link rel="icon" href="/assets/khela-calendar-logo.png" />
+    <link rel="apple-touch-icon" href="/assets/khela-calendar-logo.png" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <header class="topbar">
       <a class="brand" href="/" aria-label="Khela Calendar home">
-        <span class="brand-mark">⚽</span>
+        <img class="brand-mark" src="/assets/khela-calendar-logo.png" alt="" />
         <span>
           <strong>Khela Calendar</strong>
           <small>Bangladesh match clock</small>
@@ -32,19 +37,35 @@
     <main>
       <section class="tool-hero" id="calendar">
         <div class="hero-copy">
+          <img class="hero-logo" src="/assets/khela-calendar-logo.png" alt="Khela Calendar logo" />
           <p class="eyebrow">🇧🇩 Asia/Dhaka by default</p>
-          <h1>World Cup 2026 match calendar for Bangladesh fans.</h1>
+          <h1>Your World Cup schedule, always up to date.</h1>
           <p class="hero-text">
-            Bangla or English team names, country flags, and subscribed calendar links that stay useful when knockout fixtures are updated.
+            Khela Calendar automatically delivers every FIFA World Cup 2026 match to your calendar in local Bangladesh time.
+            From the opening match to the final, fixtures stay updated even when knockout-stage teams are confirmed and schedules change.
           </p>
+          <p class="hero-text secondary">
+            Subscribe once and get instant access across Google Calendar, Apple Calendar, Outlook, and other calendar apps. Available in both Bangla and English with country flags for quick recognition.
+          </p>
+          <div class="hero-kicker">Spend less time searching and more time enjoying football.</div>
+          <div class="bangla-callout">এক ক্লিকে ক্যালেন্ডারে..</div>
+          <div class="signal-row" aria-label="Khela Calendar highlights">
+            <span>⚽ Fixtures auto-ready</span>
+            <span>🌙 BD night-watch friendly</span>
+            <span>🏁 Flags on every match</span>
+          </div>
           <div class="hero-stats" aria-label="Tournament stats">
-            <span><strong>104</strong> matches</span>
-            <span><strong>48</strong> teams</span>
-            <span><strong>16</strong> venues</span>
+            <span><strong>104</strong> Matches</span>
+            <span><strong>48</strong> Teams</span>
+            <span><strong>16</strong> Venues</span>
           </div>
         </div>
 
         <section class="builder" aria-label="Calendar builder">
+          <div class="builder-topline">
+            <span>Live calendar feed</span>
+            <strong>World Cup 2026</strong>
+          </div>
           <div class="builder-row">
             <div>
               <span class="label">Language</span>
@@ -123,16 +144,35 @@
       </section>
 
       <section class="source-note">
-        <h2>Fan-made, free, and independent.</h2>
+        <h2>Free for friends and football fans.</h2>
         <p>
-          Khela Calendar is an unofficial fan tool. Fixture data is stored locally in this project and should be checked against official announcements before public launch.
+          Made by Arman Rahman for everyone who wants the World Cup schedule in their own calendar. Share it with friends, and if it helps, say hi or let me know how it feels.
         </p>
       </section>
     </main>
 
     <footer class="footer">
-      <span>Khela Calendar</span>
-      <span id="creator-link">Creator social link coming soon</span>
+      <span class="footer-brand">
+        <img src="/assets/khela-calendar-logo.png" alt="" />
+        Khela Calendar
+      </span>
+      <nav class="social-links" id="creator-link" aria-label="Arman Rahman's social links">
+        <span>Made by Arman Rahman</span>
+        <a class="social-link facebook" href="https://www.facebook.com/ArmanBhai07" target="_blank" rel="noopener noreferrer" aria-label="Arman Rahman on Facebook">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14.2 8.4V6.9c0-.7.5-.9.9-.9h2.1V2.3L14.3 2c-3.2 0-4.9 1.9-4.9 5.4v1H6.2v4.1h3.2V22h4.1v-9.5h3.2l.5-4.1h-3z" />
+          </svg>
+          Facebook
+        </a>
+        <a class="social-link instagram" href="https://www.instagram.com/armans_pov/" target="_blank" rel="noopener noreferrer" aria-label="Arman Rahman on Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" />
+            <circle cx="12" cy="12" r="4.2" />
+            <circle cx="17.2" cy="6.8" r="1.1" />
+          </svg>
+          Instagram
+        </a>
+      </nav>
     </footer>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>

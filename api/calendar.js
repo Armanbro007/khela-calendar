@@ -46,8 +46,8 @@ function foldLine(line) {
 
 function displayTeam(name, lang) {
   const team = teamByName.get(name) || { name, flag: "", bn: name };
-  if (name === "TBD") return lang === "bn" ? "নির্ধারিত হবে" : "TBD";
-  if (lang === "bn") return `${team.flag} ${team.bn} / ${team.name}`;
+  if (name === "TBD") return lang === "bn" ? `${team.flag} ${team.bn}` : `${team.flag} TBD`;
+  if (lang === "bn") return `${team.flag} ${team.bn}`;
   return `${team.flag} ${team.name}`;
 }
 
@@ -91,7 +91,9 @@ module.exports = function handler(req, res) {
       `${match.group}`,
       `${match.venue}, ${match.city}`,
       "Bangladesh time is handled automatically by your calendar app.",
-      "Fan-made by Khela Calendar. Not affiliated with FIFA.",
+      "Free for friends and football fans to share.",
+      "Made by Arman Rahman.",
+      "If this helped, say hi or let me know how it feels: https://www.facebook.com/ArmanBhai07",
     ].join("\n");
 
     return [
