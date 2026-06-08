@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Khela Calendar - World Cup 2026 match calendar for Bangladesh</title>
+    <meta
+      name="description"
+      content="Add World Cup 2026 matches to your calendar in Bangladesh time. Bangla and English team names, flags, Google Calendar, Apple Calendar, Android and Outlook support."
+    />
+    <meta property="og:title" content="Khela Calendar" />
+    <meta property="og:description" content="World Cup 2026 calendar for Bangladesh football fans." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://khela-calendar.vercel.app/assets/khela-calendar-logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://khela-calendar.vercel.app/assets/khela-calendar-logo.png" />
+    <meta name="theme-color" content="#07110d" />
+    <link rel="icon" href="/assets/khela-calendar-logo.png" />
+    <link rel="apple-touch-icon" href="/assets/khela-calendar-logo.png" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Khela Calendar home">
+        <img class="brand-mark" src="/assets/khela-calendar-logo.png" alt="" />
+        <span>
+          <strong>Khela Calendar</strong>
+          <small>Bangladesh match clock</small>
+        </span>
+      </a>
+      <nav class="top-actions" aria-label="Quick actions">
+        <button class="icon-button" id="share-site" type="button" title="Share">↗</button>
+        <a class="icon-button" href="#calendar" title="Calendar">＋</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="tool-hero" id="calendar">
+        <div class="hero-copy">
+          <img class="hero-logo" src="/assets/khela-calendar-logo.png" alt="Khela Calendar logo" />
+          <p class="eyebrow">🇧🇩 Asia/Dhaka by default</p>
+          <h1>Your World Cup schedule, always up to date.</h1>
+          <p class="hero-text">
+            Khela Calendar automatically delivers every FIFA World Cup 2026 match to your calendar in local Bangladesh time.
+            From the opening match to the final, fixtures stay updated even when knockout-stage teams are confirmed and schedules change.
+          </p>
+          <p class="hero-text secondary">
+            Subscribe once and get instant access across Google Calendar, Apple Calendar, Outlook, and other calendar apps. Available in both Bangla and English with country flags for quick recognition.
+          </p>
+          <div class="hero-kicker">Spend less time searching and more time enjoying football.</div>
+          <div class="bangla-callout">এক ক্লিকে ক্যালেন্ডারে..</div>
+          <div class="signal-row" aria-label="Khela Calendar highlights">
+            <span>⚽ Fixtures auto-ready</span>
+            <span>🌙 BD night-watch friendly</span>
+            <span>🏁 Flags on every match</span>
+          </div>
+          <div class="hero-stats" aria-label="Tournament stats">
+            <span><strong>104</strong> Matches</span>
+            <span><strong>48</strong> Teams</span>
+            <span><strong>16</strong> Venues</span>
+          </div>
+        </div>
+
+        <section class="builder" aria-label="Calendar builder">
+          <div class="builder-topline">
+            <span>Live calendar feed</span>
+            <strong>World Cup 2026</strong>
+          </div>
+          <div class="builder-row">
+            <div>
+              <span class="label">Language</span>
+              <div class="segmented" role="group" aria-label="Language">
+                <button class="segment active" data-lang="en" type="button">English</button>
+                <button class="segment" data-lang="bn" type="button">বাংলা</button>
+              </div>
+            </div>
+            <div>
+              <span class="label">Calendar</span>
+              <div class="segmented" role="group" aria-label="Calendar mode">
+                <button class="segment active" data-mode="all" type="button">All</button>
+                <button class="segment" data-mode="teams" type="button">Teams</button>
+              </div>
+            </div>
+          </div>
+
+          <label class="search-wrap">
+            <span class="label">Pick teams</span>
+            <input id="team-search" type="search" placeholder="Search Brazil, Argentina, ইংল্যান্ড..." autocomplete="off" />
+          </label>
+
+          <div class="team-grid" id="team-grid" aria-label="Teams"></div>
+
+          <label class="toggle-row">
+            <input id="include-knockouts" type="checkbox" checked />
+            <span>
+              <strong>Include knockout stage</strong>
+              <small>Useful when you follow selected teams.</small>
+            </span>
+          </label>
+
+          <div class="selected-strip" id="selected-strip">All 104 matches selected</div>
+
+          <div class="calendar-actions">
+            <button class="primary-action" id="apple-btn" type="button"> Apple</button>
+            <button class="primary-action" id="google-btn" type="button">G Google</button>
+            <button class="secondary-action" id="copy-btn" type="button">Copy URL</button>
+            <a class="secondary-action" id="ics-link" href="/api/calendar?scope=all&lang=en" download>Download .ics</a>
+          </div>
+          <p class="microcopy" id="feed-url">Feed ready.</p>
+        </section>
+      </section>
+
+      <section class="match-band">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">BD time</p>
+            <h2>Next matches</h2>
+          </div>
+          <div class="filter-pills" role="group" aria-label="Match filters">
+            <button class="pill active" data-filter="next" type="button">Next</button>
+            <button class="pill" data-filter="night" type="button">Night watch</button>
+            <button class="pill" data-filter="all" type="button">All</button>
+          </div>
+        </div>
+        <div class="match-list" id="match-list"></div>
+      </section>
+
+      <section class="info-grid">
+        <article>
+          <span>🇧🇩</span>
+          <h3>Bangladesh first</h3>
+          <p>Every match is displayed in Bangladesh time and can be shown with Bangla country names.</p>
+        </article>
+        <article>
+          <span>🔁</span>
+          <h3>Subscribed feeds</h3>
+          <p>Calendar apps can refresh the feed, so knockout placeholders can be updated later.</p>
+        </article>
+        <article>
+          <span>📣</span>
+          <h3>Share ready</h3>
+          <p>Built for Facebook, Messenger, and WhatsApp sharing when you are ready to launch.</p>
+        </article>
+      </section>
+
+      <section class="source-note">
+        <h2>Free for friends and football fans.</h2>
+        <p>
+          Made by Arman Rahman for everyone who wants the World Cup schedule in their own calendar. Share it with friends, and if it helps, say hi or let me know how it feels.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span class="footer-brand">
+        <img src="/assets/khela-calendar-logo.png" alt="" />
+        Khela Calendar
+      </span>
+      <nav class="social-links" id="creator-link" aria-label="Arman Rahman's social links">
+        <span>Made by Arman Rahman</span>
+        <a class="social-link facebook" href="https://www.facebook.com/ArmanBhai07" target="_blank" rel="noopener noreferrer" aria-label="Arman Rahman on Facebook">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14.2 8.4V6.9c0-.7.5-.9.9-.9h2.1V2.3L14.3 2c-3.2 0-4.9 1.9-4.9 5.4v1H6.2v4.1h3.2V22h4.1v-9.5h3.2l.5-4.1h-3z" />
+          </svg>
+          Facebook
+        </a>
+        <a class="social-link instagram" href="https://www.instagram.com/armans_pov/" target="_blank" rel="noopener noreferrer" aria-label="Arman Rahman on Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" />
+            <circle cx="12" cy="12" r="4.2" />
+            <circle cx="17.2" cy="6.8" r="1.1" />
+          </svg>
+          Instagram
+        </a>
+      </nav>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
