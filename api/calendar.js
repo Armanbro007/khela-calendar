@@ -85,12 +85,12 @@ module.exports = function handler(req, res) {
     const home = displayTeam(match.team_a, lang);
     const away = displayTeam(match.team_b, lang);
     const isKnockout = !/^Group /.test(match.group);
-    const duration = isKnockout ? 180 : 140;
+    const duration = isKnockout ? 150 : 110;
     const summary = `${home} vs ${away}`;
     const description = [
       `${match.group}`,
       `${match.venue}, ${match.city}`,
-      "Bangladesh time is handled automatically by your calendar app.",
+      "Saved in UTC. Your calendar app shows this in your own local timezone automatically.",
       "Free for friends and football fans to share.",
       "Made by Arman Rahman.",
       "If this helped, say hi or let me know how it feels: https://www.facebook.com/ArmanBhai07",
@@ -118,7 +118,7 @@ module.exports = function handler(req, res) {
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     foldLine(`X-WR-CALNAME:${escapeIcs(title)}`),
-    "X-WR-TIMEZONE:Asia/Dhaka",
+    "X-WR-TIMEZONE:Etc/UTC",
     ...events,
     "END:VCALENDAR",
   ].join("\r\n");
