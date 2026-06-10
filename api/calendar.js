@@ -125,6 +125,7 @@ module.exports = function handler(req, res) {
 
   res.setHeader("Content-Type", "text/calendar; charset=utf-8");
   res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=3600");
-  res.setHeader("Content-Disposition", 'inline; filename="khela-calendar-world-cup-2026.ics"');
+  const disposition = req.query.download === "1" ? "attachment" : "inline";
+  res.setHeader("Content-Disposition", `${disposition}; filename="khela-calendar-world-cup-2026.ics"`);
   res.status(200).send(calendar);
 };

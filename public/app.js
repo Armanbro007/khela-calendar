@@ -129,12 +129,32 @@ function feedPath() {
   return `/api/calendar?${params.toString()}`;
 }
 
+function downloadFeedPath() {
+  const url = new URL(feedPath(), baseUrl());
+  url.searchParams.set("download", "1");
+  return `${url.pathname}${url.search}`;
+}
+
 function feedUrl() {
   return `${baseUrl()}${feedPath()}`;
 }
 
+function webcalFeedUrl() {
+  return feedUrl().replace(/^https?:\/\//, "webcal://");
+}
+
 function googleSubscribeUrl() {
-  return `https://calendar.google.com/calendar/u/0/r?cid=${encodeURIComponent(feedUrl())}`;
+  return `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(webcalFeedUrl())}`;
+}
+
+function androidGoogleIntentUrl() {
+  const cid = encodeURIComponent(webcalFeedUrl());
+  const fallback = encodeURIComponent(googleSubscribeUrl());
+  return `intent://calendar.google.com/calendar/render?cid=${cid}#Intent;scheme=https;package=com.google.android.calendar;S.browser_fallback_url=${fallback};end`;
+}
+
+function isAndroid() {
+  return /Android/i.test(navigator.userAgent || "");
 }
 
 function showToast(message) {
@@ -191,7 +211,8 @@ function updateActions() {
   const url = feedUrl();
 
   els.feedUrl.textContent = needsTeam ? copy[state.lang].noTeam : `${copy[state.lang].feedReady}: ${url}`;
-  els.icsLink.href = needsTeam ? "#" : feedPath();
+  els.icsLink.href = needsTeam ? "#" : downloadFeedPath();
+  els.icsLink.setAttribute("download", "khela-calendar-world-cup-2026.ics");
 
   [els.appleBtn, els.googleBtn, els.copyBtn].forEach((button) => {
     button.disabled = needsTeam;
@@ -366,8 +387,13 @@ els.appleBtn.addEventListener("click", () => {
 
 els.googleBtn.addEventListener("click", () => {
   if (navigator.clipboard) navigator.clipboard.writeText(feedUrl()).catch(() => {});
+  if (isAndroid()) {
+    window.location.href = androidGoogleIntentUrl();
+    showToast("Opening Google Calendar. Feed URL copied as backup.");
+    return;
+  }
   window.open(googleSubscribeUrl(), "_blank", "noopener,noreferrer");
-  showToast("Google Calendar link opened. Feed URL copied as backup.");
+  showToast("Google Calendar subscribe opened. Feed URL copied as backup.");
 });
 
 els.copyBtn.addEventListener("click", async () => {
