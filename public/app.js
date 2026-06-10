@@ -18,6 +18,9 @@ const els = {
   copyBtn: document.querySelector("#copy-btn"),
   icsLink: document.querySelector("#ics-link"),
   matchList: document.querySelector("#match-list"),
+  featuredTeamSelect: document.querySelector("#featured-team-select"),
+  featuredSummary: document.querySelector("#featured-summary"),
+  featuredMatchList: document.querySelector("#featured-match-list"),
   toast: document.querySelector("#toast"),
 };
 
@@ -57,12 +60,38 @@ function formatBdDate(date) {
   }).format(date);
 }
 
+function formatCount(value) {
+  if (state.lang === "bn") return new Intl.NumberFormat("bn-BD").format(value);
+  return String(value);
+}
+
 function formatBdTime(date) {
-  return new Intl.DateTimeFormat(state.lang === "bn" ? "bn-BD" : "en-US", {
+  const hour = Number(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Dhaka",
+      hour: "numeric",
+      hour12: false,
+    }).format(date),
+  );
+  const label =
+    hour >= 4 && hour <= 6
+      ? state.lang === "bn"
+        ? "ভোর"
+        : "Early morning"
+      : hour >= 7 && hour <= 10
+        ? state.lang === "bn"
+          ? "সকাল"
+          : "Morning"
+        : state.lang === "bn"
+          ? "রাত"
+          : "Night";
+  const time = new Intl.DateTimeFormat(state.lang === "bn" ? "bn-BD" : "en-US", {
     timeZone: "Asia/Dhaka",
     hour: "numeric",
     minute: "2-digit",
   }).format(date);
+  const localizedTime = state.lang === "bn" ? time.replace("AM", "এএম").replace("PM", "পিএম") : time;
+  return `${label} ${localizedTime}`;
 }
 
 function teamInfo(name) {
@@ -102,6 +131,10 @@ function feedPath() {
 
 function feedUrl() {
   return `${baseUrl()}${feedPath()}`;
+}
+
+function googleSubscribeUrl() {
+  return `https://calendar.google.com/calendar/u/0/r?cid=${encodeURIComponent(feedUrl())}`;
 }
 
 function showToast(message) {
@@ -221,6 +254,46 @@ function renderMatches() {
     .join("");
 }
 
+function renderFeaturedMatches() {
+  if (!els.featuredTeamSelect || !els.featuredMatchList) return;
+  const teamName = els.featuredTeamSelect.value || "Brazil";
+  const team = teamInfo(teamName);
+  const list = state.matches
+    .filter((match) => match.team_a === teamName || match.team_b === teamName)
+    .sort((a, b) => localMatchDate(a) - localMatchDate(b));
+
+  els.featuredSummary.textContent =
+    state.lang === "bn"
+      ? `${team.flag} ${team.bn} · ${formatCount(list.length)} ম্যাচ`
+      : `${team.flag} ${team.name} · ${list.length} matches`;
+
+  if (!list.length) {
+    els.featuredMatchList.innerHTML = `<p class="empty">${copy[state.lang].noMatches}</p>`;
+    return;
+  }
+
+  els.featuredMatchList.innerHTML = list
+    .map((match) => {
+      const date = localMatchDate(match);
+      return `
+        <article class="featured-match-card">
+          <div class="match-time">
+            <strong>${formatBdTime(date)}</strong>
+            <span>${formatBdDate(date)}</span>
+          </div>
+          <div class="match-main">
+            <h3>${teamLabel(match.team_a)} <span>vs</span> ${teamLabel(match.team_b)}</h3>
+          </div>
+          <div class="match-meta">
+            <span>${match.group}</span>
+            <span>${match.venue}, ${match.city}</span>
+          </div>
+        </article>
+      `;
+    })
+    .join("");
+}
+
 function refresh() {
   document.documentElement.lang = state.lang === "bn" ? "bn" : "en";
   document.querySelectorAll("[data-lang]").forEach((button) => {
@@ -234,6 +307,7 @@ function refresh() {
   });
   renderTeams();
   renderMatches();
+  renderFeaturedMatches();
   updateSelectedStrip();
   updateActions();
 }
@@ -284,13 +358,16 @@ document.addEventListener("click", (event) => {
 
 els.teamSearch.addEventListener("input", renderTeams);
 els.includeKnockouts.addEventListener("change", updateActions);
+if (els.featuredTeamSelect) els.featuredTeamSelect.addEventListener("change", renderFeaturedMatches);
 
 els.appleBtn.addEventListener("click", () => {
   window.location.href = feedUrl().replace(/^https?:\/\//, "webcal://");
 });
 
 els.googleBtn.addEventListener("click", () => {
-  window.open(`https://calendar.google.com/calendar/r?cid=${encodeURIComponent(feedUrl())}`, "_blank", "noopener,noreferrer");
+  if (navigator.clipboard) navigator.clipboard.writeText(feedUrl()).catch(() => {});
+  window.open(googleSubscribeUrl(), "_blank", "noopener,noreferrer");
+  showToast("Google Calendar link opened. Feed URL copied as backup.");
 });
 
 els.copyBtn.addEventListener("click", async () => {

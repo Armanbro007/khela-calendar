@@ -25,7 +25,7 @@
         <img class="brand-mark" src="/assets/khela-calendar-logo.png" alt="" />
         <span>
           <strong>Khela Calendar</strong>
-          <small>Bangladesh match clock</small>
+          <small>World Cup 2026 timing hub</small>
         </span>
       </a>
       <nav class="top-actions" aria-label="Quick actions">
@@ -101,10 +101,11 @@
 
           <div class="calendar-actions">
             <button class="primary-action" id="apple-btn" type="button"> Apple</button>
-            <button class="primary-action" id="google-btn" type="button">G Google</button>
+            <button class="primary-action" id="google-btn" type="button">Android / Google</button>
             <button class="secondary-action" id="copy-btn" type="button">Copy URL</button>
             <a class="secondary-action" id="ics-link" href="/api/calendar?scope=all&lang=en" download>Download .ics</a>
           </div>
+          <p class="android-note">For Android, this opens Google Calendar web subscribe and copies the feed URL as backup.</p>
           <p class="microcopy" id="feed-url">Feed ready.</p>
         </section>
       </section>
@@ -122,6 +123,28 @@
           </div>
         </div>
         <div class="match-list" id="match-list"></div>
+      </section>
+
+      <section class="featured-team-panel" aria-label="High voltage team matches">
+        <div class="section-head compact">
+          <div>
+            <p class="eyebrow">High voltage</p>
+            <h2>Team match clock</h2>
+          </div>
+          <label class="team-select-wrap">
+            <span class="label">Choose team</span>
+            <select id="featured-team-select">
+              <option value="Brazil">🇧🇷 Brazil</option>
+              <option value="Argentina">🇦🇷 Argentina</option>
+              <option value="Spain">🇪🇸 Spain</option>
+              <option value="Germany">🇩🇪 Germany</option>
+              <option value="Portugal">🇵🇹 Portugal</option>
+              <option value="England">🏴 England</option>
+            </select>
+          </label>
+        </div>
+        <div class="featured-summary" id="featured-summary">Select a team to see its World Cup fixtures.</div>
+        <div class="featured-match-list" id="featured-match-list"></div>
       </section>
 
       <section class="info-grid">
