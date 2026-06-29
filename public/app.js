@@ -147,10 +147,10 @@ function googleSubscribeUrl() {
   return `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(webcalFeedUrl())}`;
 }
 
-function androidGoogleIntentUrl() {
-  const cid = encodeURIComponent(webcalFeedUrl());
-  const fallback = encodeURIComponent(googleSubscribeUrl());
-  return `intent://calendar.google.com/calendar/render?cid=${cid}#Intent;scheme=https;package=com.google.android.calendar;S.browser_fallback_url=${fallback};end`;
+function androidCalendarIntentUrl() {
+  const target = feedUrl().replace(/^https?:\/\//, "");
+  const fallback = encodeURIComponent(`${baseUrl()}${downloadFeedPath()}`);
+  return `intent://${target}#Intent;scheme=https;action=android.intent.action.VIEW;type=text/calendar;S.browser_fallback_url=${fallback};end`;
 }
 
 function isAndroid() {
@@ -388,8 +388,8 @@ els.appleBtn.addEventListener("click", () => {
 els.googleBtn.addEventListener("click", () => {
   if (navigator.clipboard) navigator.clipboard.writeText(feedUrl()).catch(() => {});
   if (isAndroid()) {
-    window.location.href = androidGoogleIntentUrl();
-    showToast("Opening Google Calendar. Feed URL copied as backup.");
+    window.location.href = androidCalendarIntentUrl();
+    showToast("Opening calendar import. Feed URL copied as backup.");
     return;
   }
   window.open(googleSubscribeUrl(), "_blank", "noopener,noreferrer");
