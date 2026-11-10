@@ -1,6 +1,12 @@
 # Khela Calendar
 
-Khela Calendar is a free World Cup 2026 calendar subscription website for Bangladesh football fans and friends.
+**Every FIFA World Cup 2026 match in your own calendar, in Bangla or English.**
+
+World Cup 2026 is played in North America, so most matches fall late at night or early morning in Bangladesh. Khela Calendar shows all 104 matches in Bangladesh time and turns them into a calendar feed you subscribe to once. Pick only your teams if you like, and Google Calendar, Apple Calendar or Outlook keeps it up to date.
+
+![Khela Calendar home page](docs/screenshot.png)
+
+**How it works:** a static site (`public/`) lets you choose language and teams, and a small serverless function (`api/calendar.js`) builds the matching `.ics` feed on request. No database and no paid backend, so it runs free on Vercel.
 
 ## What is included
 
