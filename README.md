@@ -1,8 +1,8 @@
 # Khela Calendar
 
-**Every FIFA World Cup 2026 match in your own calendar, in Bangla or English.**
+**World Cup 2026 match reminders on your phone, at your own local kickoff time.**
 
-World Cup 2026 is played in North America, so most matches fall late at night or early morning in Bangladesh. Khela Calendar shows all 104 matches in Bangladesh time and turns them into a calendar feed you subscribe to once. Pick only your teams if you like, and Google Calendar, Apple Calendar or Outlook keeps it up to date.
+World Cup 2026 is played in North America, so for most fans the kickoff times are in a different time zone and easy to get wrong. With Khela Calendar you open the website on Android or iPhone, pick your favourite teams or matches, and tap Add to calendar. Every match lands in your phone's calendar at the correct kickoff time for wherever you are, so your calendar's reminders and home-screen widget pop up on time. No time-zone maths and no missed matches. Bangla or English.
 
 ![Khela Calendar home page](docs/screenshot.png)
 
@@ -10,7 +10,7 @@ World Cup 2026 is played in North America, so most matches fall late at night or
 
 ## What is included
 
-- Bangladesh-time match browsing
+- Calendar events follow your phone's time zone automatically (the match list on the site shows Bangladesh time)
 - Bangla and English team-name toggle
 - Country flag emoji on teams and matches
 - All-matches calendar feed
