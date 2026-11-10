@@ -107,6 +107,11 @@ module.exports = function handler(req, res) {
       foldLine(`LOCATION:${escapeIcs(`${match.venue}, ${match.city}, ${match.host_country}`)}`),
       "STATUS:CONFIRMED",
       "TRANSP:OPAQUE",
+      "BEGIN:VALARM",
+      "ACTION:DISPLAY",
+      foldLine(`DESCRIPTION:${escapeIcs(lang === "bn" ? `৩০ মিনিট পরে খেলা শুরু: ${summary}` : `Kickoff in 30 minutes: ${summary}`)}`),
+      "TRIGGER:-PT30M",
+      "END:VALARM",
       "END:VEVENT",
     ].join("\r\n");
   });

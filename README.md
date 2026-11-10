@@ -15,6 +15,7 @@ World Cup 2026 is played in North America, so for most fans the kickoff times ar
 - Country flag emoji on teams and matches
 - All-matches calendar feed
 - Selected-teams calendar feed
+- A reminder alarm 30 minutes before every kickoff
 - Optional knockout-stage inclusion
 - Apple Calendar, Google Calendar, Android copy URL, and `.ics` download actions
 - Free Vercel-ready deployment with no paid backend
